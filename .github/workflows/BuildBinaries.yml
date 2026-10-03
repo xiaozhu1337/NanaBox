@@ -24,8 +24,10 @@ jobs:
       run: dotnet nuget locals all --clear
     - name: Build
       run: msbuild BuildAllTargets.proj
+    - name: Verify disk snapshots
+      run: python -X utf8 Tools/test_snapshots.py
     - name: Prepare artifacts
-      run: rm Output\Binaries\* -vb -Recurse -Force -Include *.exp, *.idb, *.ilk, *.iobj, *.ipdb, *.lastbuildstate, *.lib, *.obj, *.res, *.tlog
+      run: python -X utf8 Tools/prepare_artifacts.py
     - uses: actions/upload-artifact@v7
       with:
         name: NanaBox_All_Binaries_GitHubActions

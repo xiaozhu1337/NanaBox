@@ -124,6 +124,9 @@ namespace NanaBox
 
         void Shutdown();
 
+        void ShutdownForSnapshot(DWORD Timeout = 60000);
+        bool HasExited() const;
+
         void Terminate();
 
         void Pause(
@@ -147,6 +150,7 @@ namespace NanaBox
 
         HcsOperation m_Operation;
         HcsSystem m_ComputeSystem;
+        winrt::handle m_ExitEvent{ ::CreateEventW(nullptr, TRUE, FALSE, nullptr) };
 
         static void CALLBACK ComputeSystemCallback(
             HCS_EVENT* Event,

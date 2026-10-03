@@ -48,6 +48,8 @@ If you'd like me to add features or improvements ahead of time, please use
 
 ## Features
 
+- Supports disk snapshots with creation, restore, branching, and deletion. See
+  the [snapshot guide](Documents/Snapshots.md) for scope and usage.
 - Based on Host Compute System API as virtualization backend.
 - Supports Hyper-V Enhanced Session Mode for Windows Guests.
 - Supports Hyper-V Nested Virtualization.

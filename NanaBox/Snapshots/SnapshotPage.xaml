@@ -1,0 +1,41 @@
+<Page
+  x:Class="NanaBox.SnapshotPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  IsTextScaleFactorEnabled="False"
+  Loaded="PageLoaded">
+  <Grid Padding="24" RowSpacing="12">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <TextBlock x:Uid="/Snapshots/Title" FontSize="24" FontWeight="SemiBold" Text="Disk snapshots" />
+    <TextBlock x:Uid="/Snapshots/Notice" Grid.Row="1" TextWrapping="Wrap"
+      Text="Save guest work first. Operations shut down the guest normally and restart the VM. Memory and shared folders are not saved. Restore discards changes made since the selected snapshot." />
+    <ListView x:Name="SnapshotList" Grid.Row="2" SelectionMode="Single" SelectionChanged="SelectionChanged" />
+    <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="12">
+      <Button x:Name="PreviousButton" x:Uid="/Snapshots/Previous" Content="Previous" Click="PreviousClick" />
+      <TextBlock x:Name="PageText" VerticalAlignment="Center" />
+      <Button x:Name="NextButton" x:Uid="/Snapshots/Next" Content="Next" Click="NextClick" />
+    </StackPanel>
+    <StackPanel Grid.Row="4" Spacing="8">
+      <TextBox x:Name="NameBox" x:Uid="/Snapshots/Name" Header="Snapshot name" MaxLength="80" />
+      <TextBox x:Name="DescriptionBox" x:Uid="/Snapshots/Description" Header="Description" MaxLength="1000" />
+      <CheckBox x:Name="ConfirmBox" x:Uid="/Snapshots/Confirm" Content="I confirm restoring or deleting the selected snapshot." />
+      <TextBlock x:Name="StatusText" TextWrapping="Wrap" />
+    </StackPanel>
+    <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="12">
+      <Button x:Uid="/Snapshots/Create" Content="Create snapshot" Click="CreateClick" />
+      <Button x:Name="RestoreButton" x:Uid="/Snapshots/Restore" Content="Restore" Click="RestoreClick" IsEnabled="False" />
+      <Button x:Name="DeleteButton" x:Uid="/Snapshots/Delete" Content="Delete" Click="DeleteClick" IsEnabled="False" />
+      <Button x:Uid="/Snapshots/Close" Content="Close" Click="CloseClick" />
+    </StackPanel>
+    <TextBlock x:Uid="/Snapshots/DeleteNotice" Grid.Row="6" TextWrapping="Wrap"
+      Text="Deleting a snapshot preserves disks required by other snapshots or the current VM. Only unused managed files are reclaimed." />
+  </Grid>
+</Page>

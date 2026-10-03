@@ -157,6 +157,16 @@ namespace winrt::NanaBox::implementation
             0);
     }
 
+    void MainWindowControl::SnapshotsButtonClick(
+        winrt::IInspectable const& sender,
+        winrt::RoutedEventArgs const& e)
+    {
+        UNREFERENCED_PARAMETER(sender);
+        UNREFERENCED_PARAMETER(e);
+        ::PostMessageW(this->m_WindowHandle, WM_COMMAND,
+            MAKEWPARAM(NanaBox::MainWindowCommands::Snapshots, BN_CLICKED), 0);
+    }
+
     void MainWindowControl::ReloadVirtualMachineSettingsButtonClick(
         winrt::IInspectable const& sender,
         winrt::RoutedEventArgs const& e)

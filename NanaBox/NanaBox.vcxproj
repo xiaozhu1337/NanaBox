@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BF54E51D-D562-4F07-8FE0-EF538B0A1628}</ProjectGuid>
     <ProjectName>NanaBox</ProjectName>
     <RootNamespace>NanaBox</RootNamespace>
     <MileProjectType>WindowsApplication</MileProjectType>
-    <MileProjectManifestFile>NanaBox.manifest</MileProjectManifestFile>
+    <MileProjectManifestFile>Application\NanaBox.manifest</MileProjectManifestFile>
     <MinimalCoreWin>false</MinimalCoreWin>
     <DefaultLanguage>en</DefaultLanguage>
     <AppContainerApplication>false</AppContainerApplication>
@@ -33,6 +33,8 @@
   </ImportGroup>
   <ItemDefinitionGroup>
     <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Window;$(ProjectDir)Configuration;$(ProjectDir)Host;$(ProjectDir)RemoteDesktop;$(ProjectDir)Utilities;$(ProjectDir)Dialogs;$(ProjectDir)Confirmations;$(ProjectDir)DiskPages;$(ProjectDir)Application;$(ProjectDir)Snapshots;$(GeneratedFilesDir)Window;$(GeneratedFilesDir)Dialogs;$(GeneratedFilesDir)Confirmations;$(GeneratedFilesDir)DiskPages;$(GeneratedFilesDir)Application;$(GeneratedFilesDir)Snapshots;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WINRT_NO_SOURCE_LOCATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -45,108 +47,108 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AboutPage.cpp">
+    <ClCompile Include="Dialogs\AboutPage.cpp">
       <DependentUpon>AboutPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="ConfigurationManager.cpp" />
-    <ClCompile Include="HostCompute.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="MainWindowControl.cpp">
+    <ClCompile Include="Configuration\ConfigurationManager.cpp" />
+    <ClCompile Include="Host\HostCompute.cpp" />
+    <ClCompile Include="Window\MainWindow.cpp" />
+    <ClCompile Include="Window\MainWindowControl.cpp">
       <DependentUpon>MainWindowControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="MessagePage.cpp">
+    <ClCompile Include="Dialogs\MessagePage.cpp">
       <DependentUpon>MessagePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="NanaBox.Configuration.Parser.cpp" />
-    <ClCompile Include="NanaBox.cpp" />
-    <ClCompile Include="NewVirtualHardDiskPage.cpp">
+    <ClCompile Include="Configuration\NanaBox.Configuration.Parser.cpp" />
+    <ClCompile Include="Application\NanaBox.cpp" />
+    <ClCompile Include="DiskPages\NewVirtualHardDiskPage.cpp">
       <DependentUpon>NewVirtualHardDiskPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="ProgressRing.cpp">
+    <ClCompile Include="Dialogs\ProgressRing.cpp">
       <DependentUpon>ProgressRing.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="QuickStartPage.cpp">
+    <ClCompile Include="DiskPages\QuickStartPage.cpp">
       <DependentUpon>QuickStartPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="RdpBase.cpp" />
-    <ClCompile Include="RdpClient.cpp" />
+    <ClCompile Include="RemoteDesktop\RdpBase.cpp" />
+    <ClCompile Include="RemoteDesktop\RdpClient.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="App.cpp">
+    <ClCompile Include="Application\App.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
-    <ClCompile Include="ReloadConfirmationPage.cpp">
+    <ClCompile Include="Confirmations\ReloadConfirmationPage.cpp">
       <DependentUpon>ReloadConfirmationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="ResizeVirtualHardDiskPage.cpp">
+    <ClCompile Include="DiskPages\ResizeVirtualHardDiskPage.cpp">
       <DependentUpon>ResizeVirtualHardDiskPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="SponsorPage.cpp">
+    <ClCompile Include="Dialogs\SponsorPage.cpp">
       <DependentUpon>SponsorPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="ExitConfirmationPage.cpp">
+    <ClCompile Include="Utilities\Utils.cpp" />
+    <ClCompile Include="Confirmations\ExitConfirmationPage.cpp">
       <DependentUpon>ExitConfirmationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="VmmsCertificate.cpp" />
+    <ClCompile Include="Host\VmmsCertificate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="Application\App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="AboutPage.idl">
+    <Midl Include="Dialogs\AboutPage.idl">
       <DependentUpon>AboutPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="App.idl">
+    <Midl Include="Application\App.idl">
       <DependentUpon>App.xaml</DependentUpon>
     </Midl>
-    <Midl Include="MainWindowControl.idl">
+    <Midl Include="Window\MainWindowControl.idl">
       <DependentUpon>MainWindowControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="ExitConfirmationPage.idl">
+    <Midl Include="Confirmations\ExitConfirmationPage.idl">
       <DependentUpon>ExitConfirmationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="MessagePage.idl">
+    <Midl Include="Dialogs\MessagePage.idl">
       <DependentUpon>MessagePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="NewVirtualHardDiskPage.idl">
+    <Midl Include="DiskPages\NewVirtualHardDiskPage.idl">
       <DependentUpon>NewVirtualHardDiskPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="ProgressRing.idl">
+    <Midl Include="Dialogs\ProgressRing.idl">
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="QuickStartPage.idl">
+    <Midl Include="DiskPages\QuickStartPage.idl">
       <DependentUpon>QuickStartPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="ReloadConfirmationPage.idl">
+    <Midl Include="Confirmations\ReloadConfirmationPage.idl">
       <DependentUpon>ReloadConfirmationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="ResizeVirtualHardDiskPage.idl">
+    <Midl Include="DiskPages\ResizeVirtualHardDiskPage.idl">
       <DependentUpon>ResizeVirtualHardDiskPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="SponsorPage.idl">
+    <Midl Include="Dialogs\SponsorPage.idl">
       <DependentUpon>SponsorPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
@@ -155,96 +157,96 @@
     <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="NanaBox.manifest" />
+    <Manifest Include="Application\NanaBox.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AboutPage.h">
+    <ClInclude Include="Dialogs\AboutPage.h">
       <DependentUpon>AboutPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="ConfigurationManager.h" />
-    <ClInclude Include="NanaBox.Configuration.Parser.h" />
-    <ClInclude Include="NanaBox.Configuration.Specification.h" />
-    <ClInclude Include="HostCompute.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="MainWindowControl.h">
+    <ClInclude Include="Configuration\ConfigurationManager.h" />
+    <ClInclude Include="Configuration\NanaBox.Configuration.Parser.h" />
+    <ClInclude Include="Configuration\NanaBox.Configuration.Specification.h" />
+    <ClInclude Include="Host\HostCompute.h" />
+    <ClInclude Include="Window\MainWindow.h" />
+    <ClInclude Include="Window\MainWindowControl.h">
       <DependentUpon>MainWindowControl.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="MessagePage.h">
+    <ClInclude Include="Dialogs\MessagePage.h">
       <DependentUpon>MessagePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="MsTscAx.h" />
-    <ClInclude Include="NewVirtualHardDiskPage.h">
+    <ClInclude Include="RemoteDesktop\MsTscAx.h" />
+    <ClInclude Include="DiskPages\NewVirtualHardDiskPage.h">
       <DependentUpon>NewVirtualHardDiskPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ProgressRing.h">
+    <ClInclude Include="Dialogs\ProgressRing.h">
       <DependentUpon>ProgressRing.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="QuickStartPage.h">
+    <ClInclude Include="DiskPages\QuickStartPage.h">
       <DependentUpon>QuickStartPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="RdpBase.h" />
-    <ClInclude Include="RdpClient.h" />
-    <ClInclude Include="App.h">
+    <ClInclude Include="RemoteDesktop\RdpBase.h" />
+    <ClInclude Include="RemoteDesktop\RdpClient.h" />
+    <ClInclude Include="Application\App.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="NanaBoxResources.h" />
-    <ClInclude Include="ReloadConfirmationPage.h">
+    <ClInclude Include="Application\NanaBoxResources.h" />
+    <ClInclude Include="Confirmations\ReloadConfirmationPage.h">
       <DependentUpon>ReloadConfirmationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="ResizeVirtualHardDiskPage.h">
+    <ClInclude Include="DiskPages\ResizeVirtualHardDiskPage.h">
       <DependentUpon>ResizeVirtualHardDiskPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="SponsorPage.h">
+    <ClInclude Include="Dialogs\SponsorPage.h">
       <DependentUpon>SponsorPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="Utils.h" />
-    <ClInclude Include="ExitConfirmationPage.h">
+    <ClInclude Include="Utilities\Utils.h" />
+    <ClInclude Include="Confirmations\ExitConfirmationPage.h">
       <DependentUpon>ExitConfirmationPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="VmmsCertificate.h" />
+    <ClInclude Include="Host\VmmsCertificate.h" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AboutPage.xaml">
+    <Page Include="Dialogs\AboutPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainWindowControl.xaml">
+    <Page Include="Window\MainWindowControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ExitConfirmationPage.xaml">
+    <Page Include="Confirmations\ExitConfirmationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessagePage.xaml">
+    <Page Include="Dialogs\MessagePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="NewVirtualHardDiskPage.xaml">
+    <Page Include="DiskPages\NewVirtualHardDiskPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="QuickStartPage.xaml">
+    <Page Include="DiskPages\QuickStartPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ReloadConfirmationPage.xaml">
+    <Page Include="Confirmations\ReloadConfirmationPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ResizeVirtualHardDiskPage.xaml">
+    <Page Include="DiskPages\ResizeVirtualHardDiskPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SponsorPage.xaml">
+    <Page Include="Dialogs\SponsorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="NanaBoxResources.rc" />
+    <ResourceCompile Include="Application\NanaBoxResources.rc" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Mile.Xaml">
@@ -286,6 +288,37 @@
     <PRIResource Include="Strings\zh-Hans\QuickStartPage.resw" />
     <PRIResource Include="Strings\zh-Hans\ReloadConfirmationPage.resw" />
     <PRIResource Include="Strings\zh-Hans\SponsorPage.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Window\MainWindow.Layout.cpp" />
+    <ClCompile Include="Window\MainWindow.VirtualMachine.cpp" />
+    <ClCompile Include="Window\MainWindow.RdpEvents.cpp" />
+    <ClCompile Include="Window\MainWindow.RdpConnection.cpp" />
+    <ClCompile Include="Utilities\Utils.Dialogs.cpp" />
+    <ClCompile Include="Utilities\Utils.DiskDialogs.cpp" />
+    <ClCompile Include="Snapshots\SnapshotFiles.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Snapshots\SnapshotStore.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Snapshots\SnapshotMaintenance.cpp"><PrecompiledHeader>NotUsing</PrecompiledHeader></ClCompile>
+    <ClCompile Include="Snapshots\MainWindow.Snapshots.cpp" />
+    <ClCompile Include="Snapshots\SnapshotPage.cpp">
+      <DependentUpon>SnapshotPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClInclude Include="Snapshots\SnapshotStore.h" />
+    <ClInclude Include="Snapshots\SnapshotFiles.h" />
+    <ClInclude Include="Snapshots\SnapshotPage.h">
+      <DependentUpon>SnapshotPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <Midl Include="Snapshots\SnapshotPage.idl">
+      <DependentUpon>SnapshotPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Page Include="Snapshots\SnapshotPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <PRIResource Include="Strings\en\Snapshots.resw" />
+    <PRIResource Include="Strings\zh-Hans\Snapshots.resw" />
   </ItemGroup>
   <Import Sdk="Mile.Project.Configurations" Project="Mile.Project.Cpp.targets" />
 </Project>
