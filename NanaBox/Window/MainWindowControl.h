@@ -36,6 +36,7 @@ namespace NanaBox
             CompactVirtualHardDisk = 0x100B,
             Documentation = 0x100C,
             About = 0x100D,
+            Snapshots = 0x100E,
         };
     }
 }
@@ -77,6 +78,10 @@ namespace winrt::NanaBox::implementation
             winrt::RoutedEventArgs const& e);
 
         void VirtualMachineSettingsButtonClick(
+            winrt::IInspectable const& sender,
+            winrt::RoutedEventArgs const& e);
+
+        void SnapshotsButtonClick(
             winrt::IInspectable const& sender,
             winrt::RoutedEventArgs const& e);
 

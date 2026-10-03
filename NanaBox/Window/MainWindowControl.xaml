@@ -69,6 +69,11 @@
         Icon="Setting"
         LabelPosition="Collapsed"
         ToolTipService.ToolTip="[Virtual Machine Settings]" />
+      <AppBarButton Width="80" Click="SnapshotsButtonClick" LabelPosition="Collapsed">
+        <AppBarButton.Content>
+          <TextBlock x:Uid="/Snapshots/Toolbar" Text="Snapshots" />
+        </AppBarButton.Content>
+      </AppBarButton>
       <AppBarButton
         x:Uid="/MainWindow/ReloadVirtualMachineSettingsButton"
         Width="48"

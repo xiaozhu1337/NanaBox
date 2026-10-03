@@ -14,6 +14,8 @@
 #include "ConfigurationManager.h"
 
 #include "MainWindowControl.h"
+#include "Snapshots/SnapshotPage.h"
+#include <atomic>
 
 namespace NanaBox
 {
@@ -110,6 +112,8 @@ namespace NanaBox
         std::string m_VirtualMachineGuid;
         bool m_VirtualMachineRunning = false;
         bool m_VirtualMachineRestarting = false;
+        std::atomic<bool> m_SnapshotOperation{ false };
+        bool m_VirtualMachinePaused = false;
         RdpClientMode m_RdpClientMode = RdpClientMode::BasicSession;
         bool m_NeedRdpClientModeChange = false;
         CSize m_RecommendedDisplayResolution = CSize(1024, 768);
@@ -126,6 +130,9 @@ namespace NanaBox
         void InitializeVirtualMachine();
 
         void TryReloadVirtualMachine();
+
+        void ShowSnapshots();
+        winrt::fire_and_forget RunSnapshotOperation(SnapshotRequest Request);
 
         void RdpClientOnRemoteDesktopSizeChange(
             _In_ LONG Width,

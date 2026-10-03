@@ -55,14 +55,15 @@ namespace winrt
 namespace
 {
     winrt::hstring WaitForOperationResult(
-        NanaBox::HcsOperation const& Operation)
+        NanaBox::HcsOperation const& Operation,
+        DWORD Timeout = INFINITE)
     {
         winrt::hstring Result;
 
         winrt::hlocal_string RawResult;
         HRESULT hr = ::HcsWaitForOperationResult(
             Operation.get(),
-            INFINITE,
+            Timeout,
             RawResult.put());
         if (RawResult)
         {
@@ -190,6 +191,28 @@ void NanaBox::ComputeSystem::Shutdown()
         this->m_Operation);
 }
 
+void NanaBox::ComputeSystem::ShutdownForSnapshot(DWORD Timeout)
+{
+    winrt::check_bool(static_cast<bool>(this->m_ExitEvent));
+    HcsOperation Operation(::HcsCreateOperation(nullptr, nullptr));
+    winrt::check_pointer(Operation.get());
+    winrt::check_hresult(::HcsShutDownComputeSystem(
+        this->m_ComputeSystem.get(), Operation.get(), nullptr));
+    ULONGLONG Begin = ::GetTickCount64();
+    ::WaitForOperationResult(Operation, Timeout);
+    ULONGLONG Elapsed = ::GetTickCount64() - Begin;
+    DWORD Remaining = Elapsed >= Timeout ? 0 : Timeout - static_cast<DWORD>(Elapsed);
+    DWORD Result = ::WaitForSingleObject(this->m_ExitEvent.get(), Remaining);
+    if (Result != WAIT_OBJECT_0)
+        throw winrt::hresult_error(HRESULT_FROM_WIN32(ERROR_TIMEOUT),
+            L"Guest shutdown timed out. Shut down the guest normally and retry. No snapshot was taken.");
+}
+
+bool NanaBox::ComputeSystem::HasExited() const
+{
+    return ::WaitForSingleObject(this->m_ExitEvent.get(), 0) == WAIT_OBJECT_0;
+}
+
 void NanaBox::ComputeSystem::Terminate()
 {
     winrt::check_hresult(::HcsTerminateComputeSystem(
@@ -272,6 +295,7 @@ void CALLBACK NanaBox::ComputeSystem::ComputeSystemCallback(
     {
     case HcsEventSystemExited:
         Object->SystemExited(winrt::hstring(Event->EventData));
+        ::SetEvent(Object->m_ExitEvent.get());
         break;
     case HcsEventSystemCrashInitiated:
         break;

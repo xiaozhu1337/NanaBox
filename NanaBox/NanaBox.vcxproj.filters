@@ -1,60 +1,60 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="NanaBox.cpp" />
-    <ClCompile Include="RdpClient.cpp">
+    <ClCompile Include="Application\NanaBox.cpp" />
+    <ClCompile Include="RemoteDesktop\RdpClient.cpp">
       <Filter>RdpClient</Filter>
     </ClCompile>
-    <ClCompile Include="HostCompute.cpp">
+    <ClCompile Include="Host\HostCompute.cpp">
       <Filter>HostCompute</Filter>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="ConfigurationManager.cpp">
+    <ClCompile Include="Utilities\Utils.cpp" />
+    <ClCompile Include="Configuration\ConfigurationManager.cpp">
       <Filter>Configuration</Filter>
     </ClCompile>
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="RdpBase.cpp">
+    <ClCompile Include="Window\MainWindow.cpp" />
+    <ClCompile Include="RemoteDesktop\RdpBase.cpp">
       <Filter>RdpClient</Filter>
     </ClCompile>
-    <ClCompile Include="NanaBox.Configuration.Parser.cpp">
+    <ClCompile Include="Configuration\NanaBox.Configuration.Parser.cpp">
       <Filter>Configuration</Filter>
     </ClCompile>
-    <ClCompile Include="VmmsCertificate.cpp">
+    <ClCompile Include="Host\VmmsCertificate.cpp">
       <Filter>HostCompute</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="NanaBox.manifest" />
+    <Manifest Include="Application\NanaBox.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MsTscAx.h">
+    <ClInclude Include="RemoteDesktop\MsTscAx.h">
       <Filter>RdpClient</Filter>
     </ClInclude>
-    <ClInclude Include="RdpClient.h">
+    <ClInclude Include="RemoteDesktop\RdpClient.h">
       <Filter>RdpClient</Filter>
     </ClInclude>
-    <ClInclude Include="HostCompute.h">
+    <ClInclude Include="Host\HostCompute.h">
       <Filter>HostCompute</Filter>
     </ClInclude>
-    <ClInclude Include="NanaBoxResources.h" />
+    <ClInclude Include="Application\NanaBoxResources.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Utils.h" />
-    <ClInclude Include="ConfigurationManager.h">
+    <ClInclude Include="Utilities\Utils.h" />
+    <ClInclude Include="Configuration\ConfigurationManager.h">
       <Filter>Configuration</Filter>
     </ClInclude>
-    <ClInclude Include="NanaBox.Configuration.Specification.h">
+    <ClInclude Include="Configuration\NanaBox.Configuration.Specification.h">
       <Filter>Configuration</Filter>
     </ClInclude>
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="RdpBase.h">
+    <ClInclude Include="Window\MainWindow.h" />
+    <ClInclude Include="RemoteDesktop\RdpBase.h">
       <Filter>RdpClient</Filter>
     </ClInclude>
-    <ClInclude Include="NanaBox.Configuration.Parser.h">
+    <ClInclude Include="Configuration\NanaBox.Configuration.Parser.h">
       <Filter>Configuration</Filter>
     </ClInclude>
-    <ClInclude Include="VmmsCertificate.h">
+    <ClInclude Include="Host\VmmsCertificate.h">
       <Filter>HostCompute</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,24 +79,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml" />
+    <ApplicationDefinition Include="Application\App.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindowControl.xaml" />
-    <Page Include="ExitConfirmationPage.xaml" />
-    <Page Include="MessagePage.xaml" />
-    <Page Include="NewVirtualHardDiskPage.xaml" />
-    <Page Include="QuickStartPage.xaml" />
-    <Page Include="AboutPage.xaml" />
-    <Page Include="ReloadConfirmationPage.xaml" />
-    <Page Include="SponsorPage.xaml" />
-    <Page Include="ResizeVirtualHardDiskPage.xaml" />
+    <Page Include="Window\MainWindowControl.xaml" />
+    <Page Include="Confirmations\ExitConfirmationPage.xaml" />
+    <Page Include="Dialogs\MessagePage.xaml" />
+    <Page Include="DiskPages\NewVirtualHardDiskPage.xaml" />
+    <Page Include="DiskPages\QuickStartPage.xaml" />
+    <Page Include="Dialogs\AboutPage.xaml" />
+    <Page Include="Confirmations\ReloadConfirmationPage.xaml" />
+    <Page Include="Dialogs\SponsorPage.xaml" />
+    <Page Include="DiskPages\ResizeVirtualHardDiskPage.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="NanaBoxResources.rc" />
+    <ResourceCompile Include="Application\NanaBoxResources.rc" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\en\MainWindow.resw">
@@ -167,6 +167,6 @@
     </PRIResource>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="ProgressRing.idl" />
+    <Midl Include="Dialogs\ProgressRing.idl" />
   </ItemGroup>
 </Project>
